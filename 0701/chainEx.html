@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chain 실습3</title>
+</head>
+
+<body>
+  <script>
+
+    function changeBgColor(newColor, delay) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          document.body.style.backgroundColor = newColor;
+          resolve();
+        }, delay);
+      })
+    }
+
+    /*
+    changeBgColor('red', 1000).then(() => {
+      return changeBgColor('orange', 2000);
+    }).then(() => {
+      return changeBgColor('yellow', 1000);
+    }).then(() => {
+      return changeBgColor('green', 2000);
+    }).then(() => {
+      return changeBgColor('blue', 1000);
+    });*/
+
+    // async - await
+
+    async function exec() {
+      await changeBgColor('red', 1000);
+      await changeBgColor('orange', 2000);
+      await changeBgColor('yellow', 1000);
+      await changeBgColor('green', 2000);
+      await changeBgColor('blue', 1000);
+    }
+  
+    exec();
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spread</title>
+</head>
+<body>
+  <script>
+    // spread연산자
+    const arr1 = [1,2,3];
+    const arr2 = [4,5];
+    
+    const concat_arr = arr1.concat(arr2);
+    console.log(concat_arr);
+    const spread_arr = [...arr1, ...arr2];
+    console.log(spread_arr);
+
+    const obj = {
+      name: 'c',
+      age: 19,
+    };
+
+    // 얕은복사(동일 속성, 새로운 객체. 즉, 기존 객체에 영향이 없음) -> 원래 객체를 안전하게 유지하면서도 필요한 변경을 할 수 있음
+    console.log({...obj});
+    console.log(obj);
+    const newObj = {...obj};
+    newObj.city = 'seoul';
+    console.log(newObj);
+    console.log(obj);
+
+    const str = "hello";
+    console.log([...str]);
+
+    function get(a,b,c, ...rest){
+      console.log(a,b,c);
+      console.log(rest);
+    }
+    const arr = [10, 20, 30, 40, 50, 60];
+    get(...arr);
+
+
+
+    // 실습 1
+    const word1 = "abc";
+    const word2 = "xyz";
+    const result = [...word1, ...word2];
+    console.log(result);
+
+
+  </script>
+</body>
+</html>

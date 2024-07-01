@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>클래스</title>
+</head>
+
+<body>
+  <script>
+    // class
+    class Cat {
+      // 생성자: 클래스의 인스턴스 생성시 생성되는 것(선택사항)
+      constructor(name, age) {
+        // 속성 
+        this.name = name;
+        this.age = age;
+      };
+
+      // 메소드 : 함수의 기능을 하지만 function키워드를 사용하지 않음
+      mew() {
+        console.log(this.name, '야옹~');
+      };
+
+      eat() {
+        console.log(this.name, '밥을 먹고 있습니다.');
+      };
+    }
+
+    const cat1 = new Cat("호랑", 1);
+    const cat2 = new Cat("나비", 2);
+
+    cat1.mew();
+    cat1.eat();
+
+    cat2.mew();
+    cat2.eat();
+
+    // 상속
+    class House {
+      constructor(str) {
+        this.str = str;
+      };
+
+      name(){
+        console.log(`${this.str}에 삽니다.`);
+      }
+      door(){
+        console.log('문을 열고 닫습니다.');
+      }
+      window(){
+        console.log('창문을 열고 닫습니다.');
+      }
+
+    };
+  
+    const myHouse = new House('아파트');
+    myHouse.name();
+    myHouse.door();
+    myHouse.window();
+
+  
+    class Apartment extends House{
+      constructor(str, floor){
+        // super() -> 부모 클래스의 생성자를 자식 클래스 생성자에서 호출할때 사용. 생성자에서 맨 위에 와야함. 부모클래스의 생성자의 인수들을 모두 써줘야함. 만약 자식클래스에서 생성자가 필요없다면 생성자를 안써도 됨. 이때는 자동으로 부모클래스의 생성자를 호출함
+        super(str);
+        this.floor = floor;
+      }
+
+      elevator(){
+        console.log(`${this.floor}층까지 승강기가 있습니다.`);
+      }
+      // 메소드 overriding -> 부모 클래스의 메소드를 자식 클래스에서 재정의
+      window(){
+        // super키워드를 이용해 부모 클래스에 접근
+        super.window(); 
+        console.log('창문을 슬라이딩 합니다.');
+      }
+
+    };
+
+    const myApart = new Apartment('래미안', 12);
+    myApart.name();
+    myApart.elevator();
+    myApart.window();
+
+
+// 실습1
+class Shape{
+  constructor(w, h){
+    this.w = w;
+    this.h = h;
+  };
+  getArea(){
+    return this.w * this.h;
+  }
+
+}
+
+let rec1 = new Shape(3,4);
+console.log(rec1.getArea());
+
+// 실습2
+class Rectangle extends Shape{
+  constructor(w,h){
+    super(w,h);
+  }
+
+  // 대각선 길이
+  getDiagonal(){
+    return Math.sqrt(this.w**2 + this.h**2);
+  }
+
+}
+
+class Triangle extends Shape{
+  constructor(w,h){
+    super(w,h);
+  }
+
+  getArea(){
+    return this.w * this.h / 2;
+  }
+}
+
+class Circle extends Shape{
+  constructor(w,h, radius){
+    super(w, h);
+    this.radius = radius;
+  }
+
+  getArea(){
+    return 3.14 * this.radius**2;
+  }
+
+}
+
+let rec2 = new Shape(2,3);
+let tri = new Triangle(2,3);
+let cir = new Circle(2,3,3);
+
+console.log(rec2.getArea());
+console.log(tri.getArea());
+console.log(cir.getArea());
+
+
+  </script>
+</body>
+
+</html>

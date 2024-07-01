@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>callback 함수</title>
+</head>
+
+<body>
+  <script>
+    // console.log(1);
+    // // setTimeout(callback함수, delay) : delay시간동안 기다렸다가 callback함수를 실행
+    // setTimeout(() => {
+    //   console.log(2);
+    // }, 3000);
+    // console.log(3);
+
+
+    // 문제점이 있는 코드
+    // function goMart(){
+    //   console.log('마트에 가서 어떤 음료를 살지 고민하는중....');
+    // }
+
+    // function pickDrink(){
+    //   setTimeout(function (){
+    //     console.log('고민끝');
+    //     product = '제로 콜라';
+    //     price = 2000;
+    //   },3000);
+    // }
+
+    // function pay(product, price){
+    //   console.log(`상품명 : ${product}, 가격: ${price}`);
+    // }
+
+    // let product, price;
+    // goMart()
+    // pickDrink()
+    // pay(product, price);
+
+    // callback함수의 생김새 : 함수타입 파라미터 맨 마지막에 하나 더 선언
+    function mainFunction(param1, param2, cb) {
+      console.log(param1);
+      console.log(param2);
+      cb();
+    }
+
+    function callbackFunc() {
+      console.log('callback 함수입니다.');
+    }
+
+    mainFunction(1, 2, callbackFunc);
+
+    // callback 사용 이유 : 비동기 작업의 완료를 처리하기 위해, 비동기 작업의 순서를 제어하기 위해, 이벤트 기반 프로그래밍을 지원하기 위해
+
+    function goMart() {
+      console.log('마트에 가서 어떤 음료를 살지 고민하는중....');
+    }
+
+    function pickDrink(callback) {
+      setTimeout(function () {
+        console.log('고민끝');
+        product = '제로 콜라';
+        price = 2000;
+        callback(product, price);
+      }, 3000);
+    }
+
+    function pay(product, price) {
+      console.log(`상품명 : ${product}, 가격: ${price}`);
+    }
+
+    let product, price;
+    goMart();
+    pickDrink(pay);
+
+  </script>
+</body>
+
+</html>
